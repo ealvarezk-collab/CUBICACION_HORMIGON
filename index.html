@@ -422,10 +422,6 @@
   .inf-obs b{color:#0f172a}
   .inf-obs ul{margin:6px 0 0 18px;padding:0}
   .inf-obs ul li{margin-bottom:4px}
-  .inf-firma{margin-top:36px;text-align:center;display:flex;flex-direction:column;align-items:center}
-  .firma-linea{width:280px;border-top:1.5px solid #94a3b8;margin-bottom:6px}
-  .firma-lbl{font-size:10.5px;color:#64748b;text-transform:uppercase;
-    letter-spacing:.1em;font-weight:700}
   .inf-acciones{display:flex;gap:10px;justify-content:flex-end;
     padding:16px 36px 22px;border-top:1px solid #e2e8f0;background:#f8fafc}
   .inf-btn{padding:10px 20px;border-radius:9px;cursor:pointer;font-family:inherit;
@@ -443,6 +439,125 @@
   #error-msg h3{margin:0 0 10px;color:#dc2626;font-size:17px}
   #error-msg code{background:#f1f5f9;padding:2px 6px;border-radius:5px;
        font-family:ui-monospace,monospace;font-size:12.5px}
+
+  /* ===== MODAL DE IDENTIFICACIÓN DEL GRUPO ===== */
+  #modal-nombres{
+    position:fixed; inset:0; z-index:10000;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, rgba(15,23,42,.94), rgba(30,41,59,.94));
+    backdrop-filter:blur(10px);
+    padding:24px;
+  }
+  #modal-nombres.hidden{display:none}
+  #modal-nombres .card-nombres{
+    background:#fff; border-radius:20px; padding:34px 40px 28px;
+    max-width:480px; width:100%;
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+    text-align:center;
+    animation:popIn .5s cubic-bezier(.18,1.4,.4,1);
+    position:relative;
+    overflow:hidden;
+  }
+  #modal-nombres .card-nombres::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:5px;
+    background:linear-gradient(90deg,#2563eb,#38bdf8,#a78bfa,#2563eb);
+  }
+  #modal-nombres .icon-nombres{
+    width:70px; height:70px; margin:0 auto 12px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#dbeafe,#eff6ff);
+    display:flex; align-items:center; justify-content:center;
+    font-size:36px; line-height:1;
+    box-shadow:0 6px 20px rgba(37,99,235,.2);
+  }
+  #modal-nombres h2{
+    font-size:20px; font-weight:800; color:#0f172a;
+    margin:0 0 6px; letter-spacing:-.3px;
+  }
+  #modal-nombres .sub-nombres{
+    font-size:12.5px; color:#64748b;
+    margin:0 0 22px; line-height:1.5;
+  }
+  #modal-nombres .campo-nombre{text-align:left; margin-bottom:14px}
+  #modal-nombres .campo-nombre label{
+    display:block; font-size:11px; font-weight:700;
+    color:#475569; margin-bottom:6px;
+    text-transform:uppercase; letter-spacing:.05em;
+  }
+  #modal-nombres .campo-nombre label span{color:#dc2626}
+  #modal-nombres .campo-nombre label span.opt{
+    color:#94a3b8; font-weight:600; text-transform:none; letter-spacing:0;
+  }
+  #modal-nombres .campo-nombre input{
+    width:100%; padding:12px 14px;
+    font-size:14px; font-family:inherit;
+    border:1.5px solid #d9dfe8; border-radius:10px;
+    background:#fbfcfe; color:#1f2937;
+    transition:border-color .15s, box-shadow .15s;
+    outline:none;
+  }
+  #modal-nombres .campo-nombre input:focus{
+    border-color:#2563eb; background:#fff;
+    box-shadow:0 0 0 3px rgba(37,99,235,.13);
+  }
+  #modal-nombres .campo-nombre input.error{
+    border-color:#dc2626; background:#fef2f2;
+  }
+  #modal-nombres .error-nombres{
+    font-size:11.5px; color:#dc2626; font-weight:600;
+    margin:0 0 10px; min-height:16px;
+    text-align:left; line-height:1.4;
+  }
+  #modal-nombres .btn-comenzar{
+    width:100%; padding:13px;
+    border-radius:11px; border:none; cursor:pointer;
+    font-family:inherit; font-size:14px; font-weight:800;
+    letter-spacing:.02em;
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+    color:#fff;
+    box-shadow:0 5px 16px rgba(37,99,235,.35);
+    transition:transform .15s ease, box-shadow .15s ease;
+    margin-top:4px;
+  }
+  #modal-nombres .btn-comenzar:hover{
+    transform:translateY(-1px);
+    box-shadow:0 8px 22px rgba(37,99,235,.45);
+  }
+
+  /* Nombres del grupo en el informe */
+  .inf-grupo{
+    font-size:11.5px; color:#475569;
+    margin:10px 0 0; display:flex; flex-wrap:wrap;
+    gap:6px; align-items:center;
+  }
+  .inf-grupo b{color:#1e40af; margin-right:4px}
+  .tag-nombre{
+    display:inline-block;
+    background:#dbeafe; color:#1d4ed8;
+    font-weight:700; padding:3px 11px; border-radius:20px;
+    font-size:11px;
+  }
+  .inf-firmas{
+    margin-top:38px;
+    display:flex; gap:50px; justify-content:center; flex-wrap:wrap;
+  }
+  .firma-item{
+    display:flex; flex-direction:column; align-items:center;
+    min-width:220px;
+  }
+  .firma-item .firma-nombre{
+    font-size:12px; font-weight:700; color:#0f172a;
+    margin-bottom:5px; letter-spacing:.02em;
+  }
+  .firma-item .firma-linea{
+    width:220px; border-top:1.5px solid #94a3b8;
+    margin-bottom:6px;
+  }
+  .firma-item .firma-lbl{
+    font-size:10px; color:#64748b;
+    text-transform:uppercase; letter-spacing:.1em; font-weight:700;
+  }
 
   @media (max-width:1180px){
     #panel-izq{width:260px}
@@ -653,6 +768,30 @@
   <div class="informe" id="informe-contenido"></div>
 </div>
 
+<!-- ============ MODAL DE IDENTIFICACIÓN ============ -->
+<div id="modal-nombres" class="hidden">
+  <div class="card-nombres">
+    <div class="icon-nombres">👷</div>
+    <h2>Identificación del grupo</h2>
+    <p class="sub-nombres">
+      Ingresa tu nombre completo (máximo 2 integrantes por grupo).<br>
+      Estos datos aparecerán en el informe final de cubicaciones.
+    </p>
+    <div class="campo-nombre">
+      <label>Estudiante 1 <span>*</span></label>
+      <input type="text" id="nombre1" placeholder="Nombre y Apellido"
+             maxlength="60" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="campo-nombre">
+      <label>Estudiante 2 <span class="opt">(opcional)</span></label>
+      <input type="text" id="nombre2" placeholder="Nombre y Apellido"
+             maxlength="60" autocomplete="off" spellcheck="false">
+    </div>
+    <p id="error-nombres" class="error-nombres"></p>
+    <button id="btn-comenzar" class="btn-comenzar">Comenzar simulación ▶</button>
+  </div>
+</div>
+
 <div id="error-msg"><div>
   <h3>No se pudo cargar Three.js</h3>
   <p>Este simulador necesita conexión a internet para cargar la librería 3D, y debe abrirse
@@ -730,9 +869,9 @@ function sonidoEstrella(indice){ initAudio(); tone(880 + indice * 220, 0, 0.15, 
 /* =========================================================
    0b. COSTOS DEL HORMIGÓN (Chile)
    ========================================================= */
-const PRECIO_HORMIGON_CLP        = 115000; // CLP/m³
-const SOBRECOSTO_PEDIDO_ADICIONAL = 250000; // recargo fijo por camión adicional
-const COSTO_MANO_OBRA_EXTRA       = 150000; // cuadrilla esperando + vaciado extra
+const PRECIO_HORMIGON_CLP         = 115000;
+const SOBRECOSTO_PEDIDO_ADICIONAL = 250000;
+const COSTO_MANO_OBRA_EXTRA       = 150000;
 
 function formatearCLP(v){
   const n = Math.round(v);
@@ -745,7 +884,8 @@ function formatearCLP(v){
    ========================================================= */
 const juego = {
   puntos: 0, aciertos: 0, intentos: 0, rachaActual: 0, mejorRacha: 0,
-  estrellasTotales: 0, elementosCubicados: 0, proyectoCompletado: false
+  estrellasTotales: 0, elementosCubicados: 0, proyectoCompletado: false,
+  nombres: []
 };
 function actualizarHUDGamificacion(){
   document.getElementById('hud-pts').textContent       = juego.puntos;
@@ -822,6 +962,107 @@ document.getElementById('ach-backdrop').addEventListener('click', () => ocultarL
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && ach.el.classList.contains('show')) ocultarLogro();
   if (e.key === 'Enter' && ach.el.classList.contains('show')) { ocultarLogro(); e.stopPropagation(); }
+});
+
+/* =========================================================
+   0e. IDENTIFICACIÓN DEL GRUPO
+   ========================================================= */
+const modalNombres = document.getElementById('modal-nombres');
+const inputNombre1 = document.getElementById('nombre1');
+const inputNombre2 = document.getElementById('nombre2');
+const errorNombres = document.getElementById('error-nombres');
+const btnComenzar  = document.getElementById('btn-comenzar');
+
+function mostrarModalNombres(){
+  if (juego.nombres && juego.nombres.length >= 1) inputNombre1.value = juego.nombres[0];
+  if (juego.nombres && juego.nombres.length >= 2) inputNombre2.value = juego.nombres[1];
+  errorNombres.textContent = '';
+  inputNombre1.classList.remove('error');
+  inputNombre2.classList.remove('error');
+  modalNombres.classList.remove('hidden');
+  setTimeout(() => inputNombre1.focus(), 150);
+}
+
+function validarYGuardarNombres(){
+  const n1 = inputNombre1.value.trim().replace(/\s+/g, ' ');
+  const n2 = inputNombre2.value.trim().replace(/\s+/g, ' ');
+  errorNombres.textContent = '';
+  inputNombre1.classList.remove('error');
+  inputNombre2.classList.remove('error');
+
+  if (n1.length < 3){
+    errorNombres.textContent = 'Ingresa el nombre completo del estudiante 1.';
+    inputNombre1.classList.add('error');
+    inputNombre1.focus();
+    return false;
+  }
+  if (!/\s+/.test(n1)){
+    errorNombres.textContent = 'Ingresa nombre Y apellido separados por un espacio.';
+    inputNombre1.classList.add('error');
+    inputNombre1.focus();
+    return false;
+  }
+  if (n2.length > 0){
+    if (n2.length < 3 || !/\s+/.test(n2)){
+      errorNombres.textContent = 'Si agregas al estudiante 2, ingresa nombre Y apellido.';
+      inputNombre2.classList.add('error');
+      inputNombre2.focus();
+      return false;
+    }
+    if (n2.toLowerCase() === n1.toLowerCase()){
+      errorNombres.textContent = 'Los dos integrantes no pueden tener el mismo nombre.';
+      inputNombre2.classList.add('error');
+      inputNombre2.focus();
+      return false;
+    }
+  }
+
+  juego.nombres = n2.length > 0 ? [n1, n2] : [n1];
+  return true;
+}
+
+function confirmarNombres(){
+  if (!validarYGuardarNombres()){
+    sonidoError();
+    return;
+  }
+  sonidoExacto();
+  modalNombres.classList.add('hidden');
+  const etiqueta = juego.nombres.length === 1
+    ? juego.nombres[0]
+    : juego.nombres.join('  ·  ');
+  setTimeout(() => {
+    mostrarLogro(
+      'exacto', '👷', '¡Bienvenidos!',
+      etiqueta,
+      0, 0,
+      `<b>Objetivo:</b> cubicar correctamente los <b>7 elementos estructurales</b> del modelo 3D.<br><br>
+       <b>Cómo jugar:</b>
+       <ul>
+         <li>Lee las <b>cotas del modelo</b> (pueden estar en m, cm o mm).</li>
+         <li>Conviértelas a <b>metros</b> e ingrésalas en el panel izquierdo.</li>
+         <li>Calcula el <b>volumen total</b> en m³ y viértelo.</li>
+         <li>Si te falta hormigón podrás reintentar, pero tendrá <b>sobrecosto</b>.</li>
+         <li>Al finalizar obtendrás un <b>informe técnico con tus nombres</b>.</li>
+       </ul>
+       <b>¡Buena suerte!</b>`,
+      { textoBtn: '▶ Comenzar a jugar' }
+    );
+  }, 320);
+}
+
+btnComenzar.addEventListener('click', confirmarNombres);
+inputNombre1.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter'){ e.preventDefault(); inputNombre2.focus(); }
+});
+inputNombre2.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter'){ e.preventDefault(); confirmarNombres(); }
+});
+[inputNombre1, inputNombre2].forEach(inp => {
+  inp.addEventListener('input', () => {
+    inp.classList.remove('error');
+    errorNombres.textContent = '';
+  });
 });
 
 /* =========================================================
@@ -1720,12 +1961,19 @@ function generarInformeHTML(){
     impacto = `Balance negativo de <b>${formatearCLP(balance)}</b> respecto al costo real. Desglose:<ul>${lineas.join('')}</ul>`;
   }
 
+  const nombresHTML = (juego.nombres && juego.nombres.length > 0)
+    ? `<p class="inf-grupo"><b>👥 Integrantes:</b>${
+        juego.nombres.map(n => `<span class="tag-nombre">${n}</span>`).join('')
+      }</p>`
+    : '';
+
   return `
     <div class="inf-header">
       <div>
         <div class="inf-eyebrow">INFORME TÉCNICO DE CUBICACIÓN</div>
         <h1 class="inf-title">Cubicación de Hormigón Estructural</h1>
         <p class="inf-sub">Proyecto de fundación, muro, pilar y losa · Hormigón G25</p>
+        ${nombresHTML}
       </div>
       <div class="inf-meta">
         <div><span class="lbl">Fecha</span><br><b>${fecha}</b></div>
@@ -1859,9 +2107,14 @@ function generarInformeHTML(){
         </div>
       </section>
 
-      <div class="inf-firma">
-        <div class="firma-linea"></div>
-        <div class="firma-lbl">Firma del estudiante</div>
+      <div class="inf-firmas">
+        ${(juego.nombres && juego.nombres.length > 0 ? juego.nombres : ['_______________'])
+          .map(n => `
+            <div class="firma-item">
+              <div class="firma-nombre">${n}</div>
+              <div class="firma-linea"></div>
+              <div class="firma-lbl">Firma del estudiante</div>
+            </div>`).join('')}
       </div>
     </div>
 
@@ -2033,7 +2286,6 @@ ORDEN_UI.forEach(key => {
 function seleccionar(key){
   const btn = document.querySelector(`.elem-btn[data-key="${key}"]`);
   if (btn && btn.classList.contains('cubicado')) return;
-  // Si es el mismo elemento con falta pendiente, NO limpiar inputs (permite retry)
   if (selKey === key && fillActualPorElemento[key] > 0 && !estadoProyecto[key]){
     return;
   }
@@ -2108,7 +2360,6 @@ function verter(){
   }
   const def = ELEMENTOS[selKey];
 
-  /* 1) Validar dimensiones — NO BLOQUEA, solo retroalimenta */
   const errores = validarDimensiones();
   const dimensionesOK = errores.length === 0;
   if (!dimensionesOK){
@@ -2161,7 +2412,6 @@ function verter(){
   rPct.textContent  = (pct >= 0 ? '+' : '') + pct.toFixed(2) + ' %';
   rDif.className = 'v ' + cls; rPct.className = 'v ' + cls;
 
-  /* ---- Gamificación ---- */
   juego.intentos++;
   let puntosGanados = 0, estrellas = 0;
   let tipoLogro = estado === 'exacto' ? 'exacto' : (estado === 'falta' ? 'warn' : 'bad');
@@ -2246,7 +2496,6 @@ function verter(){
     feedback.innerHTML = mensajeHTML;
   }
 
-  /* Guardar resultado SOLO para exacto / desborda */
   if (estado === 'exacto' || estado === 'desborda'){
     estadoProyecto[selKey] = {
       estimado: est, real, diff, pct, ratio, estado, cls, txt, mensaje: mensajeHTML,
@@ -2259,7 +2508,6 @@ function verter(){
 
   actualizarHUDGamificacion();
 
-  /* Animación */
   objetos[selKey].fillH = 0;
   if (fillBase === 0) objetos[selKey].concreto.visible = false;
   if (!desborda) ocultarCharco();
@@ -2267,7 +2515,6 @@ function verter(){
   animacion = { key: selKey, t:0, dur, fillFrac: fillSiguiente, fillBase, ratio, desborda, estado };
   barraFill.className = cls;
 
-  /* Popup de logro */
   if (estado !== 'falta'){
     const esUltimo = (juego.elementosCubicados === ORDEN_UI.length);
     setTimeout(() => {
@@ -2277,9 +2524,11 @@ function verter(){
         juego.puntos += bonusFinal;
         actualizarHUDGamificacion();
         sonidoVictoria();
+        const etiquetaGrupo = (juego.nombres && juego.nombres.length > 0)
+          ? juego.nombres.join(' · ') : '';
         mostrarLogro(
           'exacto', '🎉', '¡PROYECTO COMPLETADO!',
-          `Sumaste ${juego.puntos} puntos · ${juego.estrellasTotales} ⭐`,
+          etiquetaGrupo || `Sumaste ${juego.puntos} puntos · ${juego.estrellasTotales} ⭐`,
           3, bonusFinal,
           `<b>Balance del proyecto:</b><br>` +
           `• Aciertos exactos: <b>${juego.aciertos} / ${juego.intentos}</b><br>` +
@@ -2370,6 +2619,7 @@ canvas.addEventListener('wheel', e => {
 
 document.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT') return;
+  if (!modalNombres.classList.contains('hidden')) return;
   if (ach.el.classList.contains('show')){
     if (e.key === 'Enter' || e.key === 'Escape') { ocultarLogro(); e.preventDefault(); }
     return;
@@ -2446,6 +2696,7 @@ document.getElementById('btn-reset').addEventListener('click', () => {
   randomizarDimensiones();
   actualizarTodo();
   seleccionar('muro');
+  setTimeout(mostrarModalNombres, 450);
 });
 
 document.getElementById('btn-informe').addEventListener('click', () => {
@@ -2469,6 +2720,9 @@ limpiarPanelCostos();
 actualizarFormulaViva();
 actualizarHUDGamificacion();
 requestAnimationFrame(loop);
+
+/* Mostrar modal de identificación al arrancar */
+mostrarModalNombres();
 </script>
 </body>
 </html>
